@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import "./App.css";
+import { Divider } from "antd";
 
 import fetchPhotos from "./api/fetchPhotos";
 import SearchComponent from "./components/Search/Search";
 
 import Gallery from "./Gallery/Gallery";
+import Header from "./components/Header/Header";
 
 export const App = () => {
   const [photos, setPhotos] = useState([]);
@@ -33,23 +35,26 @@ export const App = () => {
   }, []);
 
   const handleChangeValue = useCallback((value) => {
-    console.log(value);
     setValue(value);
   }, []);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <SearchComponent onSearch={handleChangeValue} />
-        <Gallery
-          photos={photos}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          photosPerPage={photosPerPage}
-          onPageChange={handlePageChange}
-          isLoading={isLoading}
-        />
-      </header>
+      <Header handleChangeValue={handleChangeValue} />
+      <Divider
+        style={{
+          borderColor: "#999999",
+          margin: 0,
+        }}
+      />
+      <Gallery
+        photos={photos}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        photosPerPage={photosPerPage}
+        onPageChange={handlePageChange}
+        isLoading={isLoading}
+      />
     </div>
   );
 };

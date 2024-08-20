@@ -1,3 +1,4 @@
+import { Image } from "antd";
 import s from "./styles.module.scss";
 
 const Photos = ({ photos }) => {
@@ -7,7 +8,11 @@ const Photos = ({ photos }) => {
         <ul className={s.list}>
           {photos.map((photo) => (
             <li key={photo.id} className={s.item}>
-              <img src={photo.urls.small} alt={photo.alt_description} />
+              <Image
+                src={photo.urls.small}
+                alt={photo.alt_description}
+                height={250}
+              />
             </li>
           ))}
         </ul>

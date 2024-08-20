@@ -19,13 +19,14 @@ const Gallery = ({
         ) : (
           <>
             <Photos photos={photos} isLoading={isLoading} />
-
-            <PaginationComponent
-              currentPage={currentPage}
-              totalPages={totalPages}
-              photosPerPage={photosPerPage}
-              onPageChange={onPageChange}
-            />
+            {photos.length > 0 && (
+              <PaginationComponent
+                currentPage={currentPage}
+                totalPages={totalPages}
+                photosPerPage={photosPerPage}
+                onPageChange={onPageChange}
+              />
+            )}
           </>
         )}
       </div>
